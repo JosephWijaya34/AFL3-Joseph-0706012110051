@@ -6,8 +6,12 @@
 //
 
 import Foundation
-//import data dari json
-var landmarks: [Landmark] = load("landmarkData.json")
+import Combine
+
+// deklarasi model type dengan observable dan juga load data dari JSON
+final class ModelData: ObservableObject {
+    @Published var landmarks: [Landmark] = load("landmarkData.json")
+}
 
 // untuk fetch data json supaya bisa dibaca oleh xcode
 func load<T: Decodable>(_ filename: String) -> T {

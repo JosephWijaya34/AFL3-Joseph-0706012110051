@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
+    // inisialisasi variable dengan data JSON supaya bisa akses model data
+    @EnvironmentObject var modelData: ModelData
     var landmark: Landmark
+    
+    //menyocokan id dengan id dalam model JSON
+    var landmarkIndex: Int {
+        modelData.landmarks.firstIndex(where: { $0.id == landmark.id})!
+        }
     
     var body: some View {
         //scroll view agar bisa di scroll
@@ -22,8 +29,11 @@ struct LandmarkDetail: View {
             //vertical stack dengan posisi leading yaitu dari kanan ke kiri
             VStack (alignment: .leading) {
                 
-                Text(landmark.name)
-                    .font(.title)
+                HStack {
+                    Text(landmark.name)
+                        .font(.title)
+                    FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+                }
                 
                 HStack {
                     Text(landmark.park)
@@ -43,6 +53,6 @@ struct LandmarkDetail: View {
 
 struct LandmarkDetail_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkDetail(landmark: landmarks[0])
+        LandmarkDetail(landmark: ModelData().landmarks[0]).environmentObject(ModelData())
     }
 }
