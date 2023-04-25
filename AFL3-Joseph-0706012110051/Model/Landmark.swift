@@ -17,6 +17,15 @@ struct Landmark: Hashable, Codable, Identifiable {
     var state: String
     var description: String
     var isFavorite: Bool
+    var isFeatured: Bool
+    
+    // mengidentifikasi data kategori dari landmark data JSON
+    var category: Category
+    enum Category: String, CaseIterable, Codable {
+        case lakes = "Lakes"
+        case rivers = "Rivers"
+        case mountains = "Mountains"
+    }
     
     // add image data supaya bisa di passing ke struct landmark
     private var imageName: String

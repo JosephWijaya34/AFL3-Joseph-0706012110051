@@ -12,6 +12,19 @@ import Combine
 final class ModelData: ObservableObject {
     @Published var landmarks: [Landmark] = load("landmarkData.json")
     var hikes: [Hike] = load("hikeData.json")
+    
+    //filter featured landmark
+    var features: [Landmark] {
+            landmarks.filter { $0.isFeatured }
+        }
+    
+    //panggil dictionary dan data categories dari landmark
+    var categories: [String: [Landmark]] {
+        Dictionary(
+            grouping: landmarks,
+            by: { $0.category.rawValue }
+        )
+    }
 }
 
 // untuk fetch data json supaya bisa dibaca oleh xcode
