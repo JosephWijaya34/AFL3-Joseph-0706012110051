@@ -11,6 +11,7 @@ import Combine
 // deklarasi model type dengan observable dan juga load data dari JSON
 final class ModelData: ObservableObject {
     @Published var landmarks: [Landmark] = load("landmarkData.json")
+    var hikes: [Hike] = load("hikeData.json")
 }
 
 // untuk fetch data json supaya bisa dibaca oleh xcode
