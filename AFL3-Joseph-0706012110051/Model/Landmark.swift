@@ -33,6 +33,11 @@ struct Landmark: Hashable, Codable, Identifiable {
             Image(imageName)
         }
     
+    // cek apakah ada feature image
+    var featureImage: Image? {
+        isFeatured ? Image(imageName + "_feature") : nil
+    }
+    
     // add koordinat data supaya bisa di passing ke struct landmark
     private var coordinates: Coordinates
     //untuk mengetahui koordinat dari data yang diinginkan supaya data bisa di passing
