@@ -21,6 +21,7 @@ struct CategoryHome: View {
 //                    .frame(height: 200)
 //                    .clipped()
 //                    .listRowInsets(EdgeInsets())
+                // featured show from page dari data json
                 PageView(pages: modelData.features.map { FeatureCard(landmark: $0) })
                     .aspectRatio(3 / 2, contentMode: .fit)
                     .listRowInsets(EdgeInsets())

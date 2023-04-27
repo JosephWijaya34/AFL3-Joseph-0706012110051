@@ -16,15 +16,29 @@ struct LandmarkRow: View {
         // horizontal stack
         HStack {
             // panggil data gambar dari object array landmark
-            landmark.image.resizable().frame(width: 50, height: 50)
+            landmark.image
+                .resizable()// biar bisa di rubah"
+                .cornerRadius(5)// meberi lekukan pada gambar
+                .frame(width: 50, height: 50)
+            
             // panggil data nama dari object array landmark
-            Text(landmark.name)
+            VStack(alignment: .leading) {
+                Text(landmark.name)
+                    .bold()
+                Text(landmark.park)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
             //memberi spasi atau jarak
             Spacer()
             if landmark.isFavorite {
-                Image(systemName: "star.fill").foregroundColor(.yellow)
+                Image(systemName: "star.fill")
+                    .imageScale(.medium)
+                    .foregroundColor(.yellow)
             }
         }
+        .padding(.vertical, 4)
     }
 }
 

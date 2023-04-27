@@ -13,7 +13,16 @@ struct AFL3_Joseph_0706012110051App: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(modelData)
+            ContentView()
+                .environmentObject(modelData)
+            }
+            .commands {
+                LandmarkCommands()
+            }
+    #if os(macOS)
+        Settings {
+            LandmarkSettings()
         }
+    #endif
     }
 }
